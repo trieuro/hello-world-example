@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'master'
+      label 'master2'
     }
 
   }
@@ -12,6 +12,12 @@ pipeline {
           sh 'mvn clean install'
         }
 
+      }
+    }
+    stage('Result') {
+      steps {
+        junit '**/target/surefile-report/TEST-*.xml'
+        archiveArtifacts 'target/*.jar'
       }
     }
   }
