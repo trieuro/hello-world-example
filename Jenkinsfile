@@ -8,16 +8,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        withMaven(maven: 'M3') {
+        withMaven() {
           sh 'mvn clean install'
         }
 
-      }
-    }
-    stage('Results') {
-      steps {
-        junit '**/target/surefire-reports/TEST-*.xml'
-        archiveArtifacts 'target/*.jar'
       }
     }
   }
